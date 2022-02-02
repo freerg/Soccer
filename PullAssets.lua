@@ -1,3 +1,5 @@
+local Datamodel = remodel.readPlaceFile("build.rbxlx")
+
 function splitstring(inputstr, sep)
 	if sep == nil then
 		sep = "%s"
@@ -25,18 +27,20 @@ local function GetInstanceFromDatamodel(Datamodel, StringPath)
 end
 
 local function SaveAssetToFilesystem(Asset, Path)
-	for _, Instance in pairs(Asset:GetChildren()) do
-		Instance.Name = Instance.Name:gsub("/", ".") -- Due to how some meshes are named, this will prevent the script from erroring.
-		if Instance.ClassName ~= "Folder" then
-			remodel.writeModelFile(Instance, Path .. "/" .. Instance.Name .. ".rbxmx")
-		else
-			remodel.createDirAll(Path .. "/" .. Instance.Name)
-			SaveAssetToFilesystem(Instance, Path .. "/" .. Instance.Name)
+	if Asset.Name == "Workspace" then
+		remodel.writeModelFile(Datamodel["Workspace"], "assets/Workspace.rbxm")
+	else
+		for _, Instance in pairs(Asset:GetChildren()) do
+			Instance.Name = Instance.Name:gsub("/", ".") -- Due to how some meshes are named, this will prevent the script from erroring.
+			if Instance.ClassName ~= "Folder" then
+				remodel.writeModelFile(Instance, Path .. "/" .. Instance.Name .. ".rbxm")
+			else
+				remodel.createDirAll(Path .. "/" .. Instance.Name)
+				SaveAssetToFilesystem(Instance, Path .. "/" .. Instance.Name)
+			end
 		end
 	end
 end
-
-local Datamodel = remodel.readPlaceFile("build.rbxlx")
 
 local AssetsToSave = {
 	{

@@ -3,9 +3,8 @@
   "tree": {
     "$className": "DataModel",
     "Workspace": {
-      "$className": "Workspace",
       "$ignoreUnknownInstances": true,
-      "$path": "./Assets/Workspace"
+      "$path": "./Assets/Workspace.rbxm"
     },
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
@@ -24,12 +23,12 @@
     },
     "StarterPlayer": {
       "$className": "StarterPlayer",
+      "$ignoreUnknownInstances": true,
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
         "$ignoreUnknownInstances": true,
         "$path": "src/StarterPlayer/StarterPlayerScripts"
-      },
-      "$ignoreUnknownInstances": true
+      }
     },
     "Teams": {
       "$className": "Teams",
