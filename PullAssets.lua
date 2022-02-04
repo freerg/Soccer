@@ -28,12 +28,12 @@ end
 
 local function SaveAssetToFilesystem(Asset, Path)
 	if Asset.Name == "Workspace" then
-		remodel.writeModelFile(Datamodel["Workspace"], "assets/Workspace.rbxm")
+		remodel.writeModelFile(Datamodel["Workspace"], "assets/Workspace.rbxmx")
 	else
 		for _, Instance in pairs(Asset:GetChildren()) do
 			Instance.Name = Instance.Name:gsub("/", ".") -- Due to how some meshes are named, this will prevent the script from erroring.
 			if Instance.ClassName ~= "Folder" then
-				remodel.writeModelFile(Instance, Path .. "/" .. Instance.Name .. ".rbxm")
+				remodel.writeModelFile(Instance, Path .. "/" .. Instance.Name .. ".rbxmx")
 			else
 				remodel.createDirAll(Path .. "/" .. Instance.Name)
 				SaveAssetToFilesystem(Instance, Path .. "/" .. Instance.Name)
@@ -50,6 +50,10 @@ local AssetsToSave = {
 	{
 		PullFrom = GetInstanceFromDatamodel(Datamodel, "ReplicatedStorage.Assets"),
 		Saveto = "./Assets/ReplicatedStorage",
+	},
+	{
+		PullFrom = GetInstanceFromDatamodel(Datamodel, "Teams"),
+		Saveto = "./Assets/Teams",
 	},
 }
 

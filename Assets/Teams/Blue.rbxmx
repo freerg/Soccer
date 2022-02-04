@@ -1,0 +1,13 @@
+<roblox version="4">
+  <Item class="Team" referent="0">
+    <Properties>
+      <string name="Name">Blue</string>
+      <BinaryString name="AttributesSerialize">
+      </BinaryString>
+      <bool name="AutoAssignable">true</bool>
+      <int64 name="SourceAssetId">-1</int64>
+      <BinaryString name="Tags"></BinaryString>
+      <int name="TeamColor">1010</int>
+    </Properties>
+  </Item>
+</roblox>
