@@ -6,3 +6,6 @@ realm = "shared"
 
 [dependencies]
 Knit = "sleitnick/knit@^1.2"
+Loader = "sleitnick/loader@1.0.2"
+Component = "sleitnick/component@2.4.2"
+Trove = "sleitnick/trove@0.2.0"

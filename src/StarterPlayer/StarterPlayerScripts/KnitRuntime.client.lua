@@ -3,8 +3,4 @@ local Knit = require(ReplicatedStorage.Packages.Knit)
 
 Knit.AddControllers(ReplicatedStorage.Controllers)
 
-Knit.Start()
-	:andThen(function()
-		print("Knit client is loaded")
-	end)
-	:catch(warn)
+Knit.Start():catch(warn)
