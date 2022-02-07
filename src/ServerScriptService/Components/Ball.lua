@@ -1,4 +1,5 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Knit = require(ReplicatedStorage.Packages.Knit)
 local Component = require(ReplicatedStorage.Packages.Component)
 local Trove = require(ReplicatedStorage.Packages.Trove)
 local Option = require(ReplicatedStorage.Packages.Option)
@@ -13,6 +14,7 @@ end
 
 function Ball:_listenForTouches()
 	local playerTrove = Trove.new()
+	self._trove:Add(playerTrove)
 
 	local function GetPlayerFromPart(part)
 		return Option.Wrap(Players:GetPlayerFromCharacter(part.Parent))
@@ -56,6 +58,7 @@ function Ball:_listenForTouches()
 		self.Instance:SetAttribute("PlayerId", player.UserId)
 		playerTrove:Add(function()
 			self.Instance:SetAttribute("PlayerId", 0)
+			humanoid.WalkSpeed = Knit.GetService("ArenaService").RunSpeed
 		end)
 		playerTrove:Add(humanoid.Died:Connect(DetachFromPlayer))
 		playerTrove:Add(Players.PlayerRemoving:Connect(function(plr)
@@ -64,6 +67,7 @@ function Ball:_listenForTouches()
 			end
 		end))
 		CreateHold(player)
+		humanoid.WalkSpeed = Knit.GetService("ArenaService").BallRunSpeed
 	end
 
 	self._trove:Add(self.Instance.Touched:Connect(function(part)
@@ -84,6 +88,13 @@ function Ball:_listenForTouches()
 			end,
 			None = function() end,
 		})
+	end))
+
+	self._trove:Add(self.Instance.Throw.OnServerEvent:Connect(function(player)
+		if self.Instance:GetAttribute("PlayerId") ~= player.UserId then
+			return
+		end
+		DetachFromPlayer()
 	end))
 end
 
