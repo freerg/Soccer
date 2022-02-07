@@ -60,8 +60,11 @@ function ClientBall:_setupForLocalPlayer()
 			end
 			local direction = Knit.Player.Character.PrimaryPart.CFrame.LookVector
 			local throwForceAlpha = math.min(THROW_FORCE_TIME, clickDuration) / THROW_FORCE_TIME
-			local throwForce = Lerp(THROW_FORCE_MIN, THROW_FORCE_MAX, throwForceAlpha)
-			self.Instance:ApplyImpulse(direction * self.Instance.AssemblyMass * throwForce)
+			local throwForceMult = Lerp(THROW_FORCE_MIN, THROW_FORCE_MAX, throwForceAlpha)
+			local throwForce = self.Instance.AssemblyMass * throwForceMult
+			local impulse = direction * throwForce
+			impulse += Vector3.new(0, throwForce / 2, 0)
+			self.Instance:ApplyImpulse(impulse)
 		end
 		self.Instance.Throw:FireServer()
 	end
