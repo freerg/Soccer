@@ -56,6 +56,10 @@ local AssetsToSave = {
 		Saveto = "./Assets/ServerStorage",
 	},
 	{
+		PullFrom = GetInstanceFromDatamodel(Datamodel, "StarterGui"),
+		Saveto = "./Assets/StarterGui",
+	},
+	{
 		PullFrom = GetInstanceFromDatamodel(Datamodel, "Teams"),
 		Saveto = "./Assets/Teams",
 	},

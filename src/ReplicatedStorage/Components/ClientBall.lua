@@ -1,4 +1,5 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Knit = require(ReplicatedStorage.Packages.Knit)
@@ -23,6 +24,29 @@ end
 
 function ClientBall:_setupForLocalPlayer()
 	local startClick = 0
+	local throwForceHandle = nil
+
+	local ballGui = Knit.Player.PlayerGui.BallGui
+	local throwForceFrame = ballGui.ThrowForceFrame
+	ballGui.Enabled = true
+
+	local function ShowThrowForce()
+		throwForceFrame.Bar.Size = UDim2.fromScale(0, 1)
+		throwForceFrame.Visible = true
+		throwForceHandle = RunService.RenderStepped:Connect(function()
+			local clickDuration = (time() - startClick)
+			local throwForceAlpha = math.min(THROW_FORCE_TIME, clickDuration) / THROW_FORCE_TIME
+			throwForceFrame.Bar.Size = UDim2.fromScale(throwForceAlpha, 1)
+		end)
+	end
+
+	local function HideThrowForce()
+		throwForceFrame.Visible = false
+		if throwForceHandle then
+			throwForceHandle:Disconnect()
+			throwForceHandle = nil
+		end
+	end
 
 	local function Throw(clickDuration)
 		if Knit.Player.Character and Knit.Player.Character.PrimaryPart then
@@ -50,15 +74,22 @@ function ClientBall:_setupForLocalPlayer()
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			-- Throw()
 			startClick = time()
+			ShowThrowForce()
 		end
 	end))
 
 	self._playerTrove:Add(UserInputService.InputEnded:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			local clickDuration = (time() - startClick)
+			HideThrowForce()
 			Throw(clickDuration)
 		end
 	end))
+
+	self._playerTrove:Add(function()
+		ballGui.Enabled = false
+		HideThrowForce()
+	end)
 end
 
 function ClientBall:_cleanupForLocalPlayer()

@@ -16,6 +16,11 @@
         "$path": "./Assets/ReplicatedStorage"
       }
     },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "$ignoreUnknownInstances": true,
+      "$path": "src/ServerScriptService"
+    },
     "ServerStorage": {
       "$className": "ServerStorage",
       "$path": "src/ServerStorage",
@@ -23,10 +28,9 @@
         "$path": "./Assets/ServerStorage"
       }
     },
-    "ServerScriptService": {
-      "$className": "ServerScriptService",
-      "$ignoreUnknownInstances": true,
-      "$path": "src/ServerScriptService"
+    "StarterGui": {
+      "$className": "StarterGui",
+      "$path": "./Assets/StarterGui"
     },
     "StarterPlayer": {
       "$className": "StarterPlayer",
