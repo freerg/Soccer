@@ -1,7 +1,7 @@
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Knit = require(ReplicatedStorage.Packages.Knit)
-local Arena = require(ServerScriptService.Components.Arena)
+local Arena = require(ServerScriptService.Components.Arena) -- import the Arena component to be able to use :FromInstance()
 
 local ArenaService = Knit.CreateService({
 	Name = "ArenaService",
@@ -9,7 +9,7 @@ local ArenaService = Knit.CreateService({
 })
 
 function ArenaService:GetArena()
-	local arenaInstance = Arena:FromInstance(workspace.Arena)
+	local arenaInstance = Arena:FromInstance(workspace.Arena) -- use the FromInstance method to get the arenaInstance, since there is no longer a Component.FromTag method as seen here https://youtu.be/P8mtVyBXkXs?t=2692
 	return arenaInstance
 end
 

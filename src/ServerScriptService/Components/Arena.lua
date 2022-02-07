@@ -58,14 +58,14 @@ function Arena:_spawnBall()
 				Promise.delay(RESPAWN_BALL_TIME):andThen(function()
 					self._respawn:Fire()
 				end),
-				"cancel" -- cancel method of Promise is passed since trove doesn't have 'GivePromise' method
+				"cancel" -- cancel method of Promise is passed since trove doesn't have 'GivePromise' method as seen here https://youtu.be/P8mtVyBXkXs?t=3085
 			)
 		end
 	end))
 end
 
 function Arena:Start()
-	self._trove:Clean() -- Clean the trove before using it in the respawn, since we can't give it to the signal to autoclean it up inside .new()
+	self._trove:Clean() -- Clean the trove before using it in the respawn, since we can't give it to the signal to autoclean it up inside .new() as seen here https://youtu.be/P8mtVyBXkXs?t=3035
 	self._respawn:Connect(function()
 		self:_spawnBall()
 	end)
