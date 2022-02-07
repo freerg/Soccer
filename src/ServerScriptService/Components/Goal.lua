@@ -1,10 +1,12 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Knit = require(game:GetService("ReplicatedStorage").Packages.Knit)
 local Component = require(ReplicatedStorage.Packages.Component)
+local Trove = require(ReplicatedStorage.Packages.Trove)
 
 local Goal = Component.new({ Tag = "Goal" })
 
 function Goal:Construct()
+	self._trove = Trove.new()
 	local teamName = self.Instance.Parent.Name
 	local team = game:GetService("Teams")[teamName]
 	local teamColor = team.TeamColor.Color
@@ -28,7 +30,7 @@ function Goal:_observeScore(teamName)
 		self.Instance.TopBar.BillboardGui.Score.Text = tostring(score)
 	end
 	local arena = Knit.GetService("ArenaService"):GetArena()
-	arena:ObserveScore(teamName, ScoreChanged)
+	self._trove:Add(arena:ObserveScore(teamName, ScoreChanged))
 end
 
 function Goal:Destroy() end

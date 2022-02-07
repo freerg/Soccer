@@ -855,7 +855,7 @@
         </Item>
         <Item class="Attachment" referent="11">
           <Properties>
-            <string name="Name">Attachment</string>
+            <string name="Name">BallSpawn</string>
             <BinaryString name="AttributesSerialize">
             </BinaryString>
             <CoordinateFrame name="CFrame">

@@ -16,6 +16,13 @@
         "$path": "./Assets/ReplicatedStorage"
       }
     },
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "$path": "src/ServerStorage",
+      "Assets": {
+        "$path": "./Assets/ServerStorage"
+      }
+    },
     "ServerScriptService": {
       "$className": "ServerScriptService",
       "$ignoreUnknownInstances": true,

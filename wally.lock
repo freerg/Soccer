@@ -15,7 +15,7 @@ dependencies = []
 [[package]]
 name = "owner/soccer"
 version = "0.1.0"
-dependencies = [["Component", "sleitnick/component@2.4.2"], ["Knit", "sleitnick/knit@1.4.3"], ["Loader", "sleitnick/loader@1.0.2"], ["Promise", "evaera/promise@4.0.0-rc.2"], ["Trove", "sleitnick/trove@0.2.0"]]
+dependencies = [["Component", "sleitnick/component@2.4.2"], ["Knit", "sleitnick/knit@1.4.3"], ["Loader", "sleitnick/loader@1.0.2"], ["Promise", "evaera/promise@4.0.0-rc.2"], ["Signal", "sleitnick/signal@1.1.0"], ["TaskQueue", "sleitnick/task-queue@0.1.0"], ["Trove", "sleitnick/trove@0.2.0"]]
 
 [[package]]
 name = "sleitnick/comm"
@@ -50,6 +50,11 @@ dependencies = []
 [[package]]
 name = "sleitnick/symbol"
 version = "2.0.0"
+dependencies = []
+
+[[package]]
+name = "sleitnick/task-queue"
+version = "0.1.0"
 dependencies = []
 
 [[package]]
