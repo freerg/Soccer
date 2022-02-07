@@ -11,8 +11,8 @@ local ArenaService = Knit.CreateService({
 	Client = {},
 })
 
-ArenaService.RunSpeed = 32
-ArenaService.BallRunSpeed = 16
+ArenaService.RunSpeed = 18
+ArenaService.BallRunSpeed = 14
 
 function ArenaService:GetArena()
 	local arenaInstance = Arena:FromInstance(workspace.Arena) -- use the FromInstance method to get the arenaInstance, since there is no longer a Component.FromTag method as seen here https://youtu.be/P8mtVyBXkXs?t=2692

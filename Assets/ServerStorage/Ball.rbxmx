@@ -115,5 +115,14 @@
         <bool name="Visible">false</bool>
       </Properties>
     </Item>
+    <Item class="RemoteEvent" referent="2">
+      <Properties>
+        <string name="Name">Throw</string>
+        <BinaryString name="AttributesSerialize">
+        </BinaryString>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+      </Properties>
+    </Item>
   </Item>
 </roblox>

@@ -22,12 +22,12 @@ function Knit.OnComponentsLoaded()
 	end)
 end
 
--- Knit.AddControllers(script.Parent.Controllers)
+Knit.AddControllers(ReplicatedStorage.Controllers)
 
 Knit.Start()
 	:andThen(function()
 		print(script.Parent:GetDescendants())
-		Loader.LoadChildren(script.Parent.Components)
+		Loader.LoadChildren(ReplicatedStorage.Components)
 		Knit.ComponentsLoaded = true
 		print("Knit Started")
 	end)

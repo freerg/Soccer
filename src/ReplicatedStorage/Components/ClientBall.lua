@@ -4,7 +4,6 @@ local UserInputService = game:GetService("UserInputService")
 local Knit = require(ReplicatedStorage.Packages.Knit)
 local Component = require(ReplicatedStorage.Packages.Component)
 local Trove = require(ReplicatedStorage.Packages.Trove)
-local Option = require(ReplicatedStorage.Packages.Option)
 
 local ClientBall = Component.new({ Tag = "Ball" })
 

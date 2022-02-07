@@ -14,7 +14,7 @@ function Arena:Construct()
 end
 
 function Arena:ObserveScore(teamName, handler)
-	local attrName = teamName .. "Score"
+	local attrName = (teamName .. "Score")
 	handler(self.Instance:GetAttribute(attrName))
 	local connection = self.Instance:GetAttributeChangedSignal(attrName):Connect(function()
 		handler(self.Instance:GetAttribute(attrName))
@@ -53,7 +53,7 @@ function Arena:_spawnBall()
 end
 
 function Arena:Start()
-	self._trove:Clean() -- Clean the trove before using it in the respawn, since we can't give it to the signal to autoclean it up inside .new() as seen here https://youtu.be/P8mtVyBXkXs?t=3035
+	-- self._trove:Clean() -- THIS WAS REMOVING SCORE OBSERVER | Clean the trove before using it in the respawn, since we can't give it to the signal to autoclean it up inside .new() as seen here https://youtu.be/P8mtVyBXkXs?t=3035
 	self._respawn:Connect(function()
 		self:_spawnBall()
 	end)

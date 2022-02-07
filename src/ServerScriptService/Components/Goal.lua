@@ -30,10 +30,10 @@ function Goal:_setColors(color)
 end
 
 function Goal:_observeScore(teamName)
+	local arena = Knit.GetService("ArenaService"):GetArena()
 	local function ScoreChanged(score)
 		self.Instance.TopBar.BillboardGui.Score.Text = tostring(score)
 	end
-	local arena = Knit.GetService("ArenaService"):GetArena()
 	self._trove:Add(arena:ObserveScore(teamName, ScoreChanged))
 end
 
