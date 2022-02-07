@@ -1,10 +1,10 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
 local Knit = require(ReplicatedStorage.Packages.Knit)
 local Component = require(ReplicatedStorage.Packages.Component)
 local Trove = require(ReplicatedStorage.Packages.Trove)
 local Option = require(ReplicatedStorage.Packages.Option)
-
-local Players = game:GetService("Players")
 
 local Ball = Component.new({ Tag = "Ball" })
 
@@ -54,11 +54,27 @@ function Ball:_listenForTouches()
 		playerTrove:Add(alignOrientation)
 	end
 
+	local function WatchForPlayerCollisions(player)
+		local root = player.Character.PrimaryPart
+		playerTrove:Add(root.Touched:Connect(function(part)
+			GetPlayerFromPart(part):Match({
+				Some = function(plr)
+					if plr ~= player and plr.Team ~= player.Team then
+						DetachFromPlayer()
+					end
+				end,
+				None = function() end,
+			})
+		end))
+	end
+
 	local function AttachToPlayer(player, humanoid)
 		self.Instance:SetAttribute("PlayerId", player.UserId)
 		playerTrove:Add(function()
+			self.Instance.CanCollide = true
 			self.Instance:SetAttribute("PlayerId", 0)
 			humanoid.WalkSpeed = Knit.GetService("ArenaService").RunSpeed
+			self.Instance:SetNetworkOwnershipAuto()
 		end)
 		playerTrove:Add(humanoid.Died:Connect(DetachFromPlayer))
 		playerTrove:Add(Players.PlayerRemoving:Connect(function(plr)
@@ -67,7 +83,10 @@ function Ball:_listenForTouches()
 			end
 		end))
 		CreateHold(player)
+		WatchForPlayerCollisions(player)
+		self.Instance.CanCollide = false
 		humanoid.WalkSpeed = Knit.GetService("ArenaService").BallRunSpeed
+		self.Instance:SetNetworkOwner(player)
 	end
 
 	self._trove:Add(self.Instance.Touched:Connect(function(part)
