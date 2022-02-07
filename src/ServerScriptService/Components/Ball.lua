@@ -90,7 +90,6 @@ function Ball:_listenForTouches()
 	end
 
 	self._trove:Add(self.Instance.Touched:Connect(function(part)
-		print("Touched", part, self.Instance:GetAttribute("PlayerId"))
 		if self.Instance:GetAttribute("PlayerId") ~= 0 then
 			return
 		end

@@ -13,7 +13,6 @@ function Goal:Construct()
 	local teamName = self.Instance.Parent.Name
 	local team = game:GetService("Teams")[teamName]
 	local teamColor = team.TeamColor.Color
-	print("Team", teamName, "has color", team.TeamColor)
 	self:_setColors(teamColor)
 	self:_observeScore(teamName)
 	self:_setupScoring(teamName)
@@ -22,7 +21,6 @@ end
 function Goal:_setColors(color)
 	for _, v in ipairs(self.Instance:GetDescendants()) do
 		if v:IsA("BasePart") and v:GetAttribute("TeamColor") then
-			print("Setting color to", color)
 			v.Color = color
 		end
 	end
