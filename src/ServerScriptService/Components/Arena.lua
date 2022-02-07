@@ -23,28 +23,16 @@ function Arena:ObserveScore(teamName, handler)
 	return connection
 end
 
-function Arena:GetBlueScore()
-	return self.Instance:GetAttribute("BlueScore")
+function Arena:GetScore(teamName)
+	return self.Instance:GetAttribute(teamName .. "Score")
 end
 
-function Arena:ResetBlueScore()
-	return self.Instance:SetAttribute("BlueScore", 0)
+function Arena:ResetScore(teamName)
+	return self.Instance:SetAttribute(teamName .. "Score", 0)
 end
 
-function Arena:IncrementBlueScore()
-	return self.Instance:SetAttribute("Score", self:GetBlueScore() + 1)
-end
-
-function Arena:GetRedScore()
-	return self.Instance:GetAttribute("RedScore")
-end
-
-function Arena:ResetRedScore()
-	return self.Instance:SetAttribute("RedScore", 0)
-end
-
-function Arena:IncrementRedScore()
-	return self.Instance:SetAttribute("RedScore", self:GetRedScore() + 1)
+function Arena:IncrementScore(teamName)
+	return self.Instance:SetAttribute(teamName .. "Score", self:GetScore(teamName) + 1)
 end
 
 function Arena:_spawnBall()

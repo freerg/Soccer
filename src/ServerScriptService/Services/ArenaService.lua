@@ -15,8 +15,8 @@ end
 
 function ArenaService:_startGame()
 	local arena = self:GetArena()
-	arena:ResetBlueScore()
-	arena:ResetRedScore()
+	arena:ResetScore("Blue")
+	arena:ResetScore("Red")
 end
 
 function ArenaService:KnitInit() end
